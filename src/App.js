@@ -2,6 +2,14 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import request from "utils/requestTool";
+
+request("agents", {
+  method: "get"
+}).then(res => {
+  console.log(res);
+})
+
 function App() {
   return (
     <div className="App">
