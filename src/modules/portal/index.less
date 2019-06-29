@@ -1,8 +1,23 @@
 #app-portal {
-  min-width: 800px;
-  min-height: 600px;
+  min-height: 100vh;
+  min-width: 1200px;
+  background-color: #f3f3f3;
+  padding-top: 80px;
+  padding-bottom: 30px;
 }
 .main-content {
-  margin-top: 80px;
-  padding: 0 150px;
+  padding: 0px 100px;
+  height: 100%;
+  overflow: hidden;
+}
+.app-content {
+  margin-left: 200px;
+  position: relative;
+  z-index: 0;
+  height: 100%;
+}
+.app-menu {
+  float: left;
+  height: calc(100vh - 110px);
+  min-height: 490px;
 }

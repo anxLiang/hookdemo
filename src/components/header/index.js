@@ -27,7 +27,7 @@ class Header extends Component {
   render() {
     const { showUserOptions } = this.props;
     return (
-      <div className="tw-header">
+      <header className="tw-header">
         <h1 className="tw-header-text">
           <img src={logo} alt="" height="40" />
         </h1>
@@ -71,7 +71,7 @@ class Header extends Component {
             </ul>
           </div>
         </div>
-      </div>
+      </header>
     );
   }
 }

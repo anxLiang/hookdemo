@@ -16,8 +16,9 @@ import "./index.less";
 
 const ROUTE_LIST = [
   {
+    exact: true,
     path: "/",
-    component: AgentsContent
+    component: DashboardContent
   },
   {
     path: "/agents",
@@ -66,14 +67,15 @@ class AppPortal extends Component {
         />
         <section id="main-content" className="main-content">
           <HashRouter>
-            <SideMenu />
+            <div className="app-menu">
+              <SideMenu />
+            </div>
             <div id="app-content" className="app-content">
               <Switch>
                 {ROUTE_LIST.map((item, index) => (
                   <Route
                     key={item.path}
-                    path={item.path}
-                    component={item.component}
+                    {...item}
                   />
                 ))}
                 <Route component={NotFound} />
