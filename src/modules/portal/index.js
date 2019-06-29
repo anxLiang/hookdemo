@@ -12,6 +12,7 @@ import MyCruiseContent from "modules/myCruise";
 import HelpContent from "modules/help";
 
 import "assets/styles/common.less";
+import "./index.less";
 
 const ROUTE_LIST = [
   {
@@ -39,27 +40,47 @@ const ROUTE_LIST = [
 class AppPortal extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      showUserOptions: false
+    };
   }
+
+  switchUserOption = () => {
+    this.setState({ showUserOptions: !this.state.showUserOptions });
+  };
+
+  handleRootClick = e => {
+    if (this.state.showUserOptions) {
+      this.setState({ showUserOptions: false });
+    }
+    // TODO: 检测弹窗
+  };
+
   render() {
+    const { showUserOptions } = this.state;
     return (
-      <div id="app-portal">
-        <HeaderBar />
-        <SideMenu />
-        <div id="app-content" className="app-content">
+      <div id="app-portal" onClick={this.handleRootClick}>
+        <HeaderBar
+          switchUserOption={this.switchUserOption}
+          showUserOptions={showUserOptions}
+        />
+        <section id="main-content" className="main-content">
           <HashRouter>
-            <Switch>
-              {ROUTE_LIST.map((item, index) => (
-                <Route
-                  key={item.path}
-                  path={item.path}
-                  component={item.component}
-                />
-              ))}
-              <Route component={NotFound} />
-            </Switch>
+            <SideMenu />
+            <div id="app-content" className="app-content">
+              <Switch>
+                {ROUTE_LIST.map((item, index) => (
+                  <Route
+                    key={item.path}
+                    path={item.path}
+                    component={item.component}
+                  />
+                ))}
+                <Route component={NotFound} />
+              </Switch>
+            </div>
           </HashRouter>
-        </div>
+        </section>
         <Footer />
       </div>
     );

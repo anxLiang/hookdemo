@@ -1,0 +1,36 @@
+.nav-menu {
+  position: absolute;
+  width: 200px;
+  min-height: 500px;
+  height: calc(100% - 100px);
+  padding-top: 30px;
+  background-color: #2d4054;
+
+  .menu-list li {
+    height: 45px;
+    padding-left: 20px;
+
+    i,
+    .menu-text {
+      color: #e1e4e6;
+      display: block;
+      height: 45px;
+      line-height: 45px;
+      float: left;
+    }
+
+    & > i {
+      width: 35px;
+      font-size: 20px;
+    }
+
+    &:hover {
+      color: #00b4cf;
+      background-color: #435466;
+      i,
+      .menu-text {
+        color: inherit;
+      }
+    }
+  }
+}

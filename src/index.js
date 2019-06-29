@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import "assets/fonticons/fonts.css";
+import './index.less';
 import AppPortal from 'modules/portal';
 import * as serviceWorker from './serviceWorker';
 
