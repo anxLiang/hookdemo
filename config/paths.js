@@ -3,7 +3,7 @@
 const path = require('path');
 const fs = require('fs');
 const url = require('url');
-
+const alias = require("./custom/alias.js");
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebook/create-react-app/issues/637
 // 已经提供正反斜杠处理
@@ -66,6 +66,11 @@ const resolveModule = (resolveFn, filePath) => {
   return resolveFn(`${filePath}.js`);
 };
 
+var parseAlias = {};
+for(const key in alias) {
+  parseAlias[key] = resolveApp(alias[key]);
+}
+
 // config after eject: we're in ./config/
 module.exports = {
   dotenv: resolveApp('.env'),
@@ -84,13 +89,8 @@ module.exports = {
   appNodeModules: resolveApp('node_modules'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
-  // 自定义路径
-  components: resolveApp('src/components'),
-  containers: resolveApp('src/containers'),
-  assets: resolveApp('src/assets'),
-  utils: resolveApp('src/utils'),
 };
 
-
+module.exports.customAlias = parseAlias;
 
 module.exports.moduleFileExtensions = moduleFileExtensions;
