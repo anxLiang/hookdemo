@@ -1,0 +1,114 @@
+#modal-dialog .modal-backDrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 66;
+}
+
+#modal-dialog #modal.modal-wrap {
+  position: absolute;
+  width: 570px;
+  height: 150px;
+  transform: translate(-30px, 30px);
+  background: #fff;
+  color: #2d4054;
+  z-index: 99;
+  border: 1px solid #00b4cf;
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.3);
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -25px;
+    left: 29px;
+    border-style: solid;
+    border-width: 0 10px 25px 10px;
+    border-color: transparent transparent #00b4cf transparent;
+  }
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -22px;
+    left: 29px;
+    border-style: solid;
+    border-width: 0 10px 25px 10px;
+    border-color: transparent transparent #fff transparent;
+  }
+}
+
+.modal-wrap .modal-content {
+  padding: 5px 15px;
+  height: 100%;
+  .modal-header {
+    height: 25px;
+
+    i.icon-close {
+      display: block;
+      position: absolute;
+      right: 10px;
+      top: 5px;
+      color: #00b4cf;
+      font-size: 20px;
+      cursor: pointer;
+      &:hover {
+        color: #018694;
+      }
+    }
+  }
+
+  .modal-body {
+    text-align: left;
+    .input-caption {
+      padding: 0 0 10px 0;
+    }
+    .input-wrap {
+      input {
+        display: block;
+        height: 30px;
+        width: 100%;
+        outline: none;
+        text-indent: 1.5em;
+        border-radius: 2px;
+        box-shadow: 0px 2px 7px -2px #999 inset;
+        border: 1px solid #999;
+        color: #00b4cf;
+      }
+    }
+  }
+
+  .modal-footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    height: 30px;
+    text-align: left;
+
+    button {
+      height: 30px;
+      font-size: 14px;
+      border: none;
+      color: #fff;
+      padding: 0 10px;
+      margin-right: 15px;
+      cursor: pointer;
+      outline: none;
+    }
+
+    button:first-child{
+      background-color: #00b4cf;
+      &:hover {
+        background-color: #018694;
+      }
+    }
+    button:last-child{
+      background-color: #435466;
+      &:hover {
+        background-color: #2d4054;
+      }
+    }
+  }
+}

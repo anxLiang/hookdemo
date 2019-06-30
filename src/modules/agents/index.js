@@ -12,7 +12,7 @@ class AgentsContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      typeCond: "all",
+      typeCond: "agents",
       styleType: "list",
       agents: [],
       displayAgents: [],
@@ -25,6 +25,10 @@ class AgentsContent extends Component {
   }
 
   componentDidMount() {
+    this.getAllAgents();
+  }
+
+  getAllAgents = () => {
     getAllAgents().then(res => {
       if (res.length === 0) return console.log("暂无数据！");
       let handleData = {
@@ -46,7 +50,10 @@ class AgentsContent extends Component {
   }
 
   selectType = type => e => {
-    this.setState({ typeCond: type });
+    this.setState({
+      typeCond: type,
+      displayAgents: this.state[type]
+    });
   };
   selectStyle = type => e => {
     this.setState({ styleType: type });
@@ -80,8 +87,8 @@ class AgentsContent extends Component {
           <div className="type-list">
             <ul>
               <li
-                className={classNames({ active: typeCond === "all" })}
-                onClick={this.selectType("all")}
+                className={classNames({ active: typeCond === "agents" })}
+                onClick={this.selectType("agents")}
               >
                 All
               </li>
@@ -120,7 +127,7 @@ class AgentsContent extends Component {
         </div>
         <div className="CI-list">
           {displayAgents.map((item, index) => {
-            return <AgentListItem key={index + item.id} appInfo={item} />;
+            return <AgentListItem key={index + item.id} appInfo={item} getAllAgents={this.getAllAgents}/>;
           })}
         </div>
       </div>

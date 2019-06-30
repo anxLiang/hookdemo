@@ -1,10 +1,14 @@
 import React, { Component } from "react";
+
+import ResourceModal from "../ResourceModal/Modal";
+
+import { updateTargetAgent } from "server";
+
 import centos from "assets/osicons/cent_os.png";
 import debian from "assets/osicons/debian.png";
 import suse from "assets/osicons/suse.png";
 import ubuntu from "assets/osicons/ubuntu.png";
 import windows from "assets/osicons/windows.png";
-
 import "./index.less";
 
 const OS_MAP = {
@@ -21,13 +25,25 @@ class AppListItem extends Component {
     this.state = {};
   }
 
-  componentDidMount() {}
+  handleAddResource = e => {
+    const modal = <ResourceModal className="" data={this.props.appInfo} callback={this.props.getAllAgents}/>;
+    ResourceModal.create(this, modal, e.target.parentNode);
+  };
 
-  componentWillReceiveProps(nextProps) {}
-
-  handleAddResource = () => {};
-
-  handleDeleteResource = () => {};
+  handleDeleteResource = index => e => {
+    const { appInfo, getAllAgents } = this.props;
+    const oldResources = appInfo.resources;
+    let newResources = oldResources.slice();
+    newResources.splice(index, 1);
+    updateTargetAgent({
+      ...this.props.appInfo,
+      resources: newResources
+    }).then(res => {
+      console.log(res);
+      alert("删除成功！");
+      getAllAgents && getAllAgents();
+    })
+  };
 
   render() {
     const { appInfo } = this.props;
@@ -67,12 +83,12 @@ class AppListItem extends Component {
               <ul>
                 {appInfo.resources.map((item, index) => {
                   return (
-                    <li className="resource-item">
+                    <li key={index} className="resource-item">
                       <span className="rs-text">{item}</span>
                       &nbsp;
                       <i
                         className="icon-trash"
-                        onClick={this.handleDeleteResource}
+                        onClick={this.handleDeleteResource(index)}
                       />
                     </li>
                   );

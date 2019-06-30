@@ -5,7 +5,6 @@ import HeaderBar from "components/header";
 import SideMenu from "components/sideMenu";
 import Footer from "components/footer";
 import NotFound from "components/404";
-
 import AgentsContent from "modules/agents";
 import DashboardContent from "modules/dashboard";
 import MyCruiseContent from "modules/myCruise";
@@ -18,7 +17,7 @@ const ROUTE_LIST = [
   {
     exact: true,
     path: "/",
-    component: DashboardContent
+    component: NotFound
   },
   {
     path: "/agents",
@@ -26,15 +25,15 @@ const ROUTE_LIST = [
   },
   {
     path: "/dashboard",
-    component: DashboardContent
+    component: NotFound
   },
   {
     path: "/mycruise",
-    component: MyCruiseContent
+    component: NotFound
   },
   {
     path: "/help",
-    component: HelpContent
+    component: NotFound
   }
 ];
 
@@ -42,7 +41,8 @@ class AppPortal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showUserOptions: false
+      showUserOptions: false,
+      activeMenu: ""
     };
   }
 
@@ -54,11 +54,14 @@ class AppPortal extends Component {
     if (this.state.showUserOptions) {
       this.setState({ showUserOptions: false });
     }
-    // TODO: 检测弹窗
+  };
+
+  setActiveMenu = menu => {
+    this.setState({ activeMenu: menu });
   };
 
   render() {
-    const { showUserOptions } = this.state;
+    const { showUserOptions, activeMenu } = this.state;
     return (
       <div id="app-portal" onClick={this.handleRootClick}>
         <HeaderBar
@@ -68,15 +71,12 @@ class AppPortal extends Component {
         <section id="main-content" className="main-content">
           <HashRouter>
             <div className="app-menu">
-              <SideMenu />
+              <SideMenu setMenu={this.setActiveMenu} activeMenu={activeMenu} />
             </div>
             <div id="app-content" className="app-content">
               <Switch>
                 {ROUTE_LIST.map((item, index) => (
-                  <Route
-                    key={item.path}
-                    {...item}
-                  />
+                  <Route key={item.path} {...item} />
                 ))}
                 <Route component={NotFound} />
               </Switch>
