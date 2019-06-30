@@ -145,5 +145,6 @@
     "less-loader": "^5.0.0",
     "prop-types": "^15.7.2"
   },
-  "proxy": "http://localhost:3001/"
+  "proxy": "http://localhost:3001/",
+  "homepage": "."
 }

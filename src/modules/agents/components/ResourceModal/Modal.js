@@ -25,10 +25,11 @@ class ResourceModal extends Component {
   addResources = e => {
     const { data, callback } = this.props;
     let newData = this.inputBuffer.replace(/\s/g, "").split(",");
-    let newResources = new Array(new Set(data.resources.concat(newData)));
+    let newResources = new Array(...new Set(data.resources.concat(newData)));
+
     updateTargetAgent({
       ...data,
-      resources: newResources[0]
+      resources: newResources
     }).then(res => {
       console.log(res);
       this.closeModalAnyway();
