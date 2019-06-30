@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import classNames from "classnames";
 
 import StateCard from "./components/StateCard";
+import AgentListItem from "./components/AppListItem";
+
+import { getAllAgents } from "server";
 
 import "./index.less";
 
@@ -10,8 +13,36 @@ class AgentsContent extends Component {
     super(props);
     this.state = {
       typeCond: "all",
-      styleType: "list"
+      styleType: "list",
+      agents: [],
+      displayAgents: [],
+      // 保存一份数据，分类渲染时计算取出即可，在此用空间换性能
+      physical: [],
+      virtual: [],
+      building: [],
+      idle: []
     };
+  }
+
+  componentDidMount() {
+    getAllAgents().then(res => {
+      if (res.length === 0) return console.log("暂无数据！");
+      let handleData = {
+        physical: [],
+        virtual: [],
+        building: [],
+        idle: []
+      };
+      res.forEach(item => {
+        handleData[item.status].push(item);
+        handleData[item.type].push(item);
+      });
+      this.setState({
+        agents: res,
+        displayAgents: res,
+        ...handleData
+      });
+    });
   }
 
   selectType = type => e => {
@@ -22,25 +53,25 @@ class AgentsContent extends Component {
   };
 
   render() {
-    const { typeCond, styleType } = this.state;
+    const { typeCond, styleType, displayAgents, building, idle, physical, virtual, agents } = this.state;
     return (
       <div className="agents-wrap">
         <div className="state-area">
-          <StateCard state="Building" num={3} />
-          <StateCard state="Idle" num={3} />
+          <StateCard state="Building" num={building.length} />
+          <StateCard state="Idle" num={idle.length} />
           <div className="card-wrap">
             <div className="total-card">
               <div className="info-block">
                 <p className="info-title">All</p>
-                <p className="info-data">3</p>
+                <p className="info-data">{agents.length}</p>
               </div>
               <div className="info-block">
                 <p className="info-title">PHYSICAL</p>
-                <p className="info-data">3</p>
+                <p className="info-data">{physical.length}</p>
               </div>
               <div className="info-block">
                 <p className="info-title">VIRTUAL</p>
-                <p className="info-data">3</p>
+                <p className="info-data">{virtual.length}</p>
               </div>
             </div>
           </div>
@@ -87,7 +118,11 @@ class AgentsContent extends Component {
             />
           </div>
         </div>
-        <div className="CI-list" />
+        <div className="CI-list">
+          {displayAgents.map((item, index) => {
+            return <AgentListItem key={index + item.id} appInfo={item} />;
+          })}
+        </div>
       </div>
     );
   }

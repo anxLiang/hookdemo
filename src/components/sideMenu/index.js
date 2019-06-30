@@ -3,12 +3,22 @@ import { Link } from "react-router-dom";
 
 import History from "components/history";
 
+import { getHistory } from "server";
+
 import "./index.less";
 
 class SideMenu extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      historyList: []
+    };
+  }
+
+  componentDidMount() {
+    getHistory().then(res => {
+      this.setState({ historyList: res });
+    });
   }
 
   render() {
@@ -40,7 +50,7 @@ class SideMenu extends Component {
             </Link>
           </li>
         </ul>
-        <History />
+        <History historyList={this.state.historyList} />
       </nav>
     );
   }

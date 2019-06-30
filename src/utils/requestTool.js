@@ -1,8 +1,12 @@
 import axios from "axios";
 
-const HTTP_PREFIX = process.env.HTTP_PREFIX;
-
 // 注：拦截器也可以通过 axios 提供的 api 进行添加
+/**
+ * @description 封装拦截器的请求工具
+ * @param {String} url 请求地址
+ * @param {Object} options 标准 axios 请求 options 对象，不包含 url，但包含 method, data 等属性
+ * @returns {Promise}
+ */
 function request(url, options) {
   /**
    * 使用 try catch 包裹，并且去掉 Promise 的 catch
@@ -13,7 +17,7 @@ function request(url, options) {
       header: {
         "Content-Type": "application/json"
       },
-      url: `${HTTP_PREFIX}/${url}`,
+      url: url,
       ...options
     }).then(res => {
       // axios 的数据层
