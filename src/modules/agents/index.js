@@ -47,7 +47,7 @@ class AgentsContent extends Component {
         ...handleData
       });
     });
-  }
+  };
 
   selectType = type => e => {
     this.setState({
@@ -60,7 +60,16 @@ class AgentsContent extends Component {
   };
 
   render() {
-    const { typeCond, styleType, displayAgents, building, idle, physical, virtual, agents } = this.state;
+    const {
+      typeCond,
+      styleType,
+      displayAgents,
+      building,
+      idle,
+      physical,
+      virtual,
+      agents
+    } = this.state;
     return (
       <div className="agents-wrap">
         <div className="state-area">
@@ -127,7 +136,13 @@ class AgentsContent extends Component {
         </div>
         <div className="CI-list">
           {displayAgents.map((item, index) => {
-            return <AgentListItem key={index + item.id} appInfo={item} getAllAgents={this.getAllAgents}/>;
+            return (
+              <AgentListItem
+                key={index + item.id}
+                appInfo={item}
+                getAllAgents={this.getAllAgents}
+              />
+            );
           })}
         </div>
       </div>

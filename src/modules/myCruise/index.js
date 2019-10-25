@@ -1,16 +1,14 @@
-import React, { Component } from "react";
-
+import React, { Component } from 'react';
+ 
 class MyCruiseContent extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {}
-    }
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
-    render() {
-        return (
-            <div>TODO MyCruise</div>
-        )
-    }
+  render() {
+    return <div>TODO MyCruise</div>;
+  }
 }
 
 export default MyCruiseContent;

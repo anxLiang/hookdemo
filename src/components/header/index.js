@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import classNames from "classnames";
+import React, { Component } from 'react';
+import classNames from 'classnames';
 
-import logo from "assets/logo/logo.svg";
-import icon from "../../logo.svg";
-import "./index.less";
+import logo from 'assets/logo/logo.svg';
+import icon from '../../logo.svg';
+import './index.less';
 
 class Header extends Component {
   constructor(props) {
@@ -34,22 +34,24 @@ class Header extends Component {
         <div id="user" className="user-info">
           <div className="user-icon-wrap">
             <img
-              ref={el => (this.userIcon = el)}
+              ref={el => {
+                this.userIcon = el;
+              }}
               className="user-icon"
               src={icon}
               alt=""
             />
             <i
               className={classNames({
-                "icon-angle-down": !showUserOptions,
-                "icon-angle-up": showUserOptions
+                'icon-angle-down': !showUserOptions,
+                'icon-angle-up': showUserOptions
               })}
               onClick={this.handleAngleClick}
             />
           </div>
           <div
-            className={classNames("user-op-list", {
-              "show-uol": showUserOptions
+            className={classNames('user-op-list', {
+              'show-uol': showUserOptions
             })}
             // 阻止菜单点击冒泡而隐藏
             onClick={e => e.stopPropagation()}
@@ -58,13 +60,13 @@ class Header extends Component {
             <ul>
               <li>
                 <i className="icon-id-card" />
-                <a className="user-op-text" href="javascript:void(0);">
+                <a className="user-op-text" href="#">
                   Profile
                 </a>
               </li>
               <li>
                 <i className="icon-sign-in" />
-                <a className="user-op-text" href="javascript:void(0);">
+                <a className="user-op-text" href="#">
                   Sign Out
                 </a>
               </li>
