@@ -1,0 +1,56 @@
+{
+  "__comment__": {
+    "start": "json-server --watch db.json --port 3333",
+    "getALl": "localhost:3333/list",
+    "getSingle": "localhost:3333/list/{id}",
+    "add": "Method POST: localhost:3333/list",
+    "editAll": "Method POST: localhost:3333/list",
+    "editSingle": "Method PUT: localhost:3333/list/{id}",
+    "delete": "Method DELETE: localhost:3333/list/{id}",
+    "seeMore": "https://www.npmjs.com/package/json-server"
+  },
+  "list": [
+    {
+      "id": 1,
+      "title": "吃早饭",
+      "detail": "鸡蛋、牛奶、面包、汤粉",
+      "date": 1572404193461,
+      "status": 0
+    },
+    {
+      "id": 2,
+      "title": "吃午饭",
+      "detail": "米饭、小炒、饮料",
+      "date": 1572404193461,
+      "status": 0
+    },
+    {
+      "id": 3,
+      "title": "吃晚饭",
+      "detail": "米饭、小炒、汤",
+      "date": 1572404193461,
+      "status": 0
+    },
+    {
+      "id": 4,
+      "title": "吃夜宵",
+      "detail": "小龙虾、炒粉、烧烤、唯怡",
+      "date": 1572404193461,
+      "status": 0
+    },
+    {
+      "id": 5,
+      "title": "写代码",
+      "detail": "React、React Native",
+      "date": 1572404193461,
+      "status": 0
+    },
+    {
+      "title": "学习",
+      "date": 1572404193461,
+      "id": 6,
+      "detail": "大前端、微前端、云、中台",
+      "status": 0
+    }
+  ]
+}

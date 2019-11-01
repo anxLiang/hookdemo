@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-import FuncComp from "components/TestComp";
+import DemoList from "components/demo";
 
 const CompPortal = () => {
   return (
     <div id="comp-wrapper">
-      <FuncComp />
+      <DemoList />
     </div>
   );
 };
